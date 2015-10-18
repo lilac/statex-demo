@@ -1,3 +1,5 @@
 rootProject.name = 'StateX'
 
+include ':statex'
 include ':app'
+project (':statex').projectDir = new File(rootProject.projectDir, '../../react-native-statex')
