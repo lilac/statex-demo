@@ -9,9 +9,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.facebook.react.LifecycleState;
-import com.facebook.react.ReactUtil;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactRootView;
+import com.facebook.react.ReactUtil;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.facebook.react.shell.MainReactPackage;
@@ -21,6 +21,9 @@ import co.rewen.statex.StateXPackage;
 public class MainActivity extends Activity implements DefaultHardwareBackBtnHandler {
 
     private static final String ADD_ACTION = "add";
+    private static final String DECREAE_ACTION = "decrease";
+    private static final String COUNT_KEY = "count";
+
     private ReactInstanceManager mReactInstanceManager;
     private ReactRootView mReactRootView;
 
@@ -45,17 +48,20 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
         setContentView(R.layout.main_activity);
         ViewGroup root = (ViewGroup) findViewById(R.id.root);
         root.addView(mReactRootView);
-        mReactRootView.startReactApplication(mReactInstanceManager, "App", null);
+        mReactRootView.startReactApplication(mReactInstanceManager, "App");
 
         mBroadcastManager = LocalBroadcastManager.getInstance(this);
 
         TextView countTextView = (TextView) findViewById(R.id.count_textView);
-        mCount = new ReactTextView(countTextView, "count");
+        mCount = new ReactTextView(countTextView, COUNT_KEY);
 
         ReactUtil.attach(mReactInstanceManager, mReactRootView);
         Button addButton = (Button) findViewById(R.id.add_button);
         ReactContext reactContext = mReactInstanceManager.getCurrentReactContext();
         Util.addAction(reactContext, addButton, ADD_ACTION);
+
+        Button decButton = (Button) findViewById(R.id.decrease_button);
+        Util.addAction(reactContext, decButton, DECREAE_ACTION);
     }
 
     @Override

@@ -20,4 +20,11 @@
         android:text="Add (+1)"
         android:id="@+id/add_button"
         android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:id="@+id/decrease_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Decrease (-1)"
+        android:layout_gravity="center"/>
 </LinearLayout>
