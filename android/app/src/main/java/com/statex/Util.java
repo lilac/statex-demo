@@ -45,7 +45,7 @@ public class Util {
         IntentFilter filter = new IntentFilter(StateX.ACTION_STATE_CHANGED);
         filter.addDataScheme(StateX.SCHEME);
         filter.addDataAuthority(StateX.AUTHORITY, null);
-        //filter.addDataPath(key, PatternMatcher.PATTERN_PREFIX);
+        filter.addDataPath("/" + key, PatternMatcher.PATTERN_PREFIX);
         return filter;
     }
 
