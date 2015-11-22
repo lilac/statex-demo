@@ -1,13 +1,7 @@
 'use strict';
 
-var React = require('react-native');
-
 var RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
 var StateX = require('react-native-statex');
-
-var {
-  AppRegistry
-} = React;
 
 var COUNT_KEY = "count";
 
@@ -31,9 +25,5 @@ async function decrease() {
   StateX.setItem(COUNT_KEY, c.toString());
 }
 
-var App = function() {
-  RCTDeviceEventEmitter.addListener('add', add);
-  RCTDeviceEventEmitter.addListener('decrease', decrease);
-}
-
-AppRegistry.registerRunnable('App', App);
+RCTDeviceEventEmitter.addListener('add', add);
+RCTDeviceEventEmitter.addListener('decrease', decrease);

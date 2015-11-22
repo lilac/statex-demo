@@ -2,30 +2,24 @@ package com.statex;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.content.LocalBroadcastManager;
 import android.view.KeyEvent;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
+import co.rewen.statex.StateXPackage;
 import com.facebook.react.LifecycleState;
 import com.facebook.react.ReactInstanceManager;
-import com.facebook.react.ReactRootView;
-import com.facebook.react.ReactUtil;
-import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.facebook.react.shell.MainReactPackage;
-
-import co.rewen.statex.StateXPackage;
 
 public class MainActivity extends Activity implements DefaultHardwareBackBtnHandler {
 
     private static final String ADD_ACTION = "add";
-    private static final String DECREAE_ACTION = "decrease";
+    private static final String DECREASE_ACTION = "decrease";
     private static final String COUNT_KEY = "count";
 
     private ReactInstanceManager mReactInstanceManager;
-    private ReactRootView mReactRootView;
 
     private LocalBroadcastManager mBroadcastManager;
     private ReactTextView mCount;
@@ -33,7 +27,7 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mReactRootView = new ReactRootView(this);
+        // mReactRootView = new ReactRootView(this);
 
         mReactInstanceManager = ReactInstanceManager.builder()
                 .setApplication(getApplication())
@@ -46,26 +40,23 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
                 .build();
 
         setContentView(R.layout.main_activity);
-        ViewGroup root = (ViewGroup) findViewById(R.id.root);
-        root.addView(mReactRootView);
-        mReactRootView.startReactApplication(mReactInstanceManager, "App");
 
         mBroadcastManager = LocalBroadcastManager.getInstance(this);
 
         TextView countTextView = (TextView) findViewById(R.id.count_textView);
         mCount = new ReactTextView(countTextView, COUNT_KEY);
 
-        ReactUtil.attach(mReactInstanceManager, mReactRootView);
+        mReactInstanceManager.createReactContextInBackground();
+
         Button addButton = (Button) findViewById(R.id.add_button);
-        ReactContext reactContext = mReactInstanceManager.getCurrentReactContext();
-        Util.addAction(reactContext, addButton, ADD_ACTION);
+        Util.addAction(mReactInstanceManager, addButton, ADD_ACTION);
 
         Button decButton = (Button) findViewById(R.id.decrease_button);
-        Util.addAction(reactContext, decButton, DECREAE_ACTION);
+        Util.addAction(mReactInstanceManager, decButton, DECREASE_ACTION);
     }
 
     @Override
-    public boolean onKeyUp(int keyCode, KeyEvent event) {
+    public boolean onKeyUp(int keyCode, @NonNull KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_MENU && mReactInstanceManager != null) {
             mReactInstanceManager.showDevOptionsDialog();
             return true;
@@ -102,7 +93,7 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
         super.onResume();
 
         if (mReactInstanceManager != null) {
-            mReactInstanceManager.onResume(this);
+            mReactInstanceManager.onResume(this, this);
         }
         mBroadcastManager.registerReceiver(mCount, Util.getStateFilter(mCount.getKey()));
     }
