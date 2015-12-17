@@ -10,6 +10,8 @@
 #import "AppDelegate.h"
 
 #import "RCTRootView.h"
+#import "RCTStateX.h"
+#import "RCTActionSheetManager.h"
 
 @implementation AppDelegate
 
@@ -31,7 +33,7 @@
    * on the same Wi-Fi network.
    */
 
-  jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle?platform=ios&dev=true"];
+  jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/events.bundle?platform=ios&dev=true"];
 
   /**
    * OPTION 2
@@ -45,14 +47,27 @@
 
 //   jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 
-  RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
-                                                      moduleName:@"StateX"
-                                               initialProperties:nil
-                                                   launchOptions:launchOptions];
+//  RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
+//                                                      moduleName:@"StateX"
+//                                               initialProperties:nil
+//                                                   launchOptions:launchOptions];
 
+  RCTBridge *bridge = [[RCTBridge alloc] initWithBundleURL:jsCodeLocation
+                                            moduleProvider:nil
+                                             launchOptions:launchOptions];
+  
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   UIViewController *rootViewController = [[UIViewController alloc] init];
-  rootViewController.view = rootView;
+  
+  RCTStatex *statex = [[RCTStatex alloc] init];
+  NSDictionary *errors;
+  NSString *value = [statex get:@"count" errorOut:&errors];
+  if (value == NULL) {
+    value = @"0";
+  }
+  UITextView *label = [[UITextView alloc] init];
+  [label setText: value];
+  rootViewController.view = label;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
   return YES;
