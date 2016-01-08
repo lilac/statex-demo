@@ -56,9 +56,6 @@
                                             moduleProvider:nil
                                              launchOptions:launchOptions];
   
-  self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-  UIViewController *rootViewController = [[UIViewController alloc] init];
-  
   RCTStatex *statex = [[RCTStatex alloc] init];
   NSDictionary *errors;
   NSString *value = [statex get:@"count" errorOut:&errors];
@@ -67,9 +64,7 @@
   }
   UITextView *label = [[UITextView alloc] init];
   [label setText: value];
-  rootViewController.view = label;
-  self.window.rootViewController = rootViewController;
-  [self.window makeKeyAndVisible];
+  
   return YES;
 }
 
