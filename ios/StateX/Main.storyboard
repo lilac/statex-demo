@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Nk8-hZ-9gl">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
@@ -17,10 +16,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Jar-wQ-cIF">
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Jar-wQ-cIF">
                                 <rect key="frame" x="268" y="89" width="65" height="81"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zjg-Fi-oBC">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zjg-Fi-oBC">
                                         <rect key="frame" x="0.0" y="0.0" width="65" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -29,10 +28,16 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uTq-du-Qds">
                                         <rect key="frame" x="0.0" y="21" width="65" height="30"/>
                                         <state key="normal" title="Increase"/>
+                                        <connections>
+                                            <action selector="increase" destination="Nk8-hZ-9gl" eventType="touchUpInside" id="auC-TU-rvv"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="989-Vm-EwH">
                                         <rect key="frame" x="0.0" y="51" width="65" height="30"/>
                                         <state key="normal" title="Decrease"/>
+                                        <connections>
+                                            <action selector="decrease" destination="Nk8-hZ-9gl" eventType="touchUpInside" id="dVb-9m-aq4"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -41,8 +46,14 @@
                         <constraints>
                             <constraint firstItem="Jar-wQ-cIF" firstAttribute="top" secondItem="1zY-yL-fqy" secondAttribute="bottom" constant="69" id="JM3-40-ra5"/>
                             <constraint firstItem="Jar-wQ-cIF" firstAttribute="centerX" secondItem="xdD-2Y-XgG" secondAttribute="centerX" id="VNr-eg-tWJ"/>
+                            <constraint firstItem="Jar-wQ-cIF" firstAttribute="top" secondItem="1zY-yL-fqy" secondAttribute="bottom" constant="10" id="w1W-kD-GLD"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="counterLabel" destination="zjg-Fi-oBC" id="fKc-BT-gvw"/>
+                        <outlet property="decreaseButton" destination="989-Vm-EwH" id="S4k-qd-jeN"/>
+                        <outlet property="increaseButton" destination="uTq-du-Qds" id="5fp-pz-kVQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FmR-V1-W1P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

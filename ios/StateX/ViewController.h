@@ -15,4 +15,8 @@
 
 @interface ViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UILabel  *counterLabel;
+@property (weak, nonatomic) IBOutlet UIButton *increaseButton;
+@property (weak, nonatomic) IBOutlet UIButton *decreaseButton;
+
 @end
