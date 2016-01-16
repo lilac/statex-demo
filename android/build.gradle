@@ -18,3 +18,7 @@ allprojects {
         jcenter()
     }
 }
+
+ext.libraries = [
+        'react-native': "com.facebook.react:react-native:0.17.0"
+]

@@ -22,12 +22,10 @@ android {
     }
 }
 
-def RN_VERSION = '0.17.0'
-
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:23.0.1'
-    compile "com.facebook.react:react-native:${RN_VERSION}"
+    compile libraries['react-native']
 
     compile project(':statex')
 }
