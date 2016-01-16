@@ -31,6 +31,8 @@
 	<string></string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Counter</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -43,7 +45,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
 </dict>
 </plist>

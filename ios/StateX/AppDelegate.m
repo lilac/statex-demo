@@ -45,26 +45,11 @@
    * see http://facebook.github.io/react-native/docs/runningondevice.html
    */
 
-//   jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+  // jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 
-//  RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
-//                                                      moduleName:@"StateX"
-//                                               initialProperties:nil
-//                                                   launchOptions:launchOptions];
-
-  RCTBridge *bridge = [[RCTBridge alloc] initWithBundleURL:jsCodeLocation
+  self.bridge = [[RCTBridge alloc] initWithBundleURL:jsCodeLocation
                                             moduleProvider:nil
                                              launchOptions:launchOptions];
-  
-  RCTStatex *statex = [[RCTStatex alloc] init];
-  NSDictionary *errors;
-  NSString *value = [statex get:@"count" errorOut:&errors];
-  if (value == NULL) {
-    value = @"0";
-  }
-  UITextView *label = [[UITextView alloc] init];
-  [label setText: value];
-  
   return YES;
 }
 

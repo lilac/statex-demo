@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Nk8-hZ-9gl">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="v0l-iC-APO">
+            <objects>
+                <viewController id="Nk8-hZ-9gl" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1zY-yL-fqy"/>
+                        <viewControllerLayoutGuide type="bottom" id="bwF-IB-Mdm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xdD-2Y-XgG">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zjg-Fi-oBC">
+                                <rect key="frame" x="268" y="69" width="65" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="wuz-91-Fjh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="989-Vm-EwH">
+                                <rect key="frame" x="268" y="148" width="65" height="30"/>
+                                <state key="normal" title="Decrease"/>
+                                <connections>
+                                    <action selector="decrease" destination="Nk8-hZ-9gl" eventType="touchUpInside" id="dVb-9m-aq4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uTq-du-Qds">
+                                <rect key="frame" x="268" y="103" width="65" height="30"/>
+                                <state key="normal" title="Increase"/>
+                                <connections>
+                                    <action selector="increase" destination="Nk8-hZ-9gl" eventType="touchUpInside" id="auC-TU-rvv"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zjg-Fi-oBC" firstAttribute="top" secondItem="1zY-yL-fqy" secondAttribute="bottom" constant="49" id="1x8-Sy-nYY"/>
+                            <constraint firstItem="uTq-du-Qds" firstAttribute="leading" secondItem="zjg-Fi-oBC" secondAttribute="leading" id="3uP-Ag-Zfr"/>
+                            <constraint firstItem="989-Vm-EwH" firstAttribute="top" secondItem="uTq-du-Qds" secondAttribute="bottom" constant="15" id="4Cs-px-Bv0"/>
+                            <constraint firstItem="uTq-du-Qds" firstAttribute="leading" secondItem="989-Vm-EwH" secondAttribute="leading" id="IhB-4s-3Ck"/>
+                            <constraint firstItem="989-Vm-EwH" firstAttribute="trailing" secondItem="uTq-du-Qds" secondAttribute="trailing" id="eAC-ws-gtw"/>
+                            <constraint firstItem="zjg-Fi-oBC" firstAttribute="centerX" secondItem="xdD-2Y-XgG" secondAttribute="centerX" id="pQD-AS-3dD"/>
+                            <constraint firstItem="uTq-du-Qds" firstAttribute="trailing" secondItem="zjg-Fi-oBC" secondAttribute="trailing" id="phI-yD-rzR"/>
+                            <constraint firstItem="uTq-du-Qds" firstAttribute="top" secondItem="zjg-Fi-oBC" secondAttribute="bottom" constant="13" id="xmj-8f-l7a"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="counterLabel" destination="zjg-Fi-oBC" id="ieW-bb-PtS"/>
+                        <outlet property="decreaseButton" destination="989-Vm-EwH" id="qiC-uE-sHe"/>
+                        <outlet property="increaseButton" destination="uTq-du-Qds" id="NkR-5H-z7E"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FmR-V1-W1P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="401" y="336"/>
+        </scene>
+    </scenes>
+</document>

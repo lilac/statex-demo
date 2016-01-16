@@ -9,25 +9,50 @@
 
 #import "ViewController.h"
 #import "RCTStatex.h"
+#import "AppDelegate.h"
+#import "RCTEventDispatcher.h"
+#import "RCTBridge.h"
 
-@implementation ViewController
+static NSString *COUNT_KEY = @"count";
 
-// MARK: Properties
-int count = 0;
+@implementation ViewController {
+  StateX *statex;
+  AppDelegate __weak *appDelegate;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+  self = [super initWithCoder:aDecoder];
+  if (self) {
+    appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sync) name:COUNT_KEY object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stateXDidLoad) name:RCTJavaScriptDidLoadNotification object:nil];
+  }
+  return self;
+}
 
 // MARK: Actions
 
 - (IBAction)increase {
-    count++;
-    [self sync];
+  [appDelegate.bridge.eventDispatcher sendDeviceEventWithName:@"add" body:nil];
 }
 
 - (IBAction)decrease {
-    count--;
-    [self sync];
+  [appDelegate.bridge.eventDispatcher sendDeviceEventWithName:@"decrease" body:nil];
+}
+
+- (void)stateXDidLoad {
+  statex = [appDelegate.bridge moduleForClass:[StateX class]];
+  [self sync];
 }
 
 - (void)sync {
-    [self.counterLabel setText:[NSString stringWithFormat:@"%d", count]];
+  NSDictionary *errors;
+  NSString *value = [statex get:COUNT_KEY errorOut:&errors];
+  if (value == NULL) {
+    value = @"0";
+  }
+  [self.counterLabel setText:value];
 }
 @end
